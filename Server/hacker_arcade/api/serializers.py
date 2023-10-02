@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Machine, Blog
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,3 +21,35 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+    
+class MachineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Machine
+        fields = ['id', 'ami_id', 'blog', 'title', 'description', 'flag', 'image', 'difficulty', 'date_created']
+        
+    def create(self, validated_data):
+        machine = Machine(
+            ami_id=validated_data['ami_id'],
+            blog=validated_data['blog'],
+            title=validated_data['title'],
+            description=validated_data['description'],
+            flag=validated_data['flag'],
+            image=validated_data['image'],
+            difficulty=validated_data['difficulty']
+        )
+        machine.save()
+        return machine
+
+class BlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = ['title', 'html_body', 'date_created', 'thumbnail']
+        
+    def create(self, validated_data):
+        blog = Blog(
+            title=validated_data['title'],
+            html_body=validated_data['html_body'],
+            thumbnail=validated_data['thumbnail']
+        )
+        blog.save()
+        return blog
