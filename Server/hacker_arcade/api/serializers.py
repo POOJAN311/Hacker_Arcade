@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User, Machine, Blog
+import hashlib
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,6 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        hashed_password = hashlib.sha256(validated_data['password'].encode()).hexdigest()
         user = User(
             username=validated_data['username'],
             email=validated_data['email'],
@@ -18,7 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
             policy_agreement=validated_data['policy_agreement'],
             terms_conditions_agreement=validated_data['terms_conditions_agreement']
         )
-        user.set_password(validated_data['password'])
+        user.set_password(hashed_password)
         user.save()
         return user
     

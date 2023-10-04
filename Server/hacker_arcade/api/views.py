@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.permissions import IsAuthenticated
 from .models import User, Machine, Blog
+import random
+import hashlib
+from django.core.mail import send_mail
 
 @api_view(['POST'])
 def register_user(request):
@@ -21,12 +24,14 @@ def register_user(request):
 def user_login(request):
     if request.method == 'POST':
         username = request.data.get('username')
-        password = request.data.get('password')
+        password = hashlib.sha256(request.data.get('password').encode()).hexdigest()
 
         user = None
         if '@' in username:
             try:
                 user = User.objects.get(email=username)
+                if not user.check_password(password):
+                    user = None
             except ObjectDoesNotExist:
                 pass
 
@@ -70,6 +75,62 @@ def user_update(request):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
             return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# forgot password feature with email verification
+@api_view(['POST'])
+def forgot_password(request):
+    if request.method == 'POST':
+        try:
+            email = request.data.get('email')
+            user = User.objects.get(email=email)
+            token = random.randint(100000, 999999)
+            request.session['token'] = token
+            send_mail(
+                'Reset Password',
+                'Your reset password token is ' + str(token),
+                'mayanprajapati007@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+            return Response({'message': 'Successfully sent email to reset password.'}, status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+# reset password feature with token verification
+@api_view(['POST'])
+def reset_password(request):
+    if request.method == 'POST':
+        try:
+            token = int(request.data.get('token'))
+            password = request.data.get('password')
+            print(type(token))
+            print(type(request.session['token']))
+            if token != request.session['token']:
+                return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+            user = User.objects.get(email=request.data.get('email'))
+            user.set_password(password)
+            user.save()
+            del request.session['token']
+            return Response({'message': 'Successfully reset password.'}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def delete_account(request):
+    if request.method == 'POST':
+        try:
+            # validate password
+            password = hashlib.sha256(request.data.get('password').encode()).hexdigest()
+            user = authenticate(username=request.user.username, password=password)
+            if not user:
+                return Response({'error': 'Invalid password'}, status=status.HTTP_400_BAD_REQUEST)
+            request.user.delete()
+            return Response({'message': 'Successfully deleted account.'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 

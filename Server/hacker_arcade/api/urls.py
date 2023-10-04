@@ -4,11 +4,14 @@ from .views import *
 urlpatterns = [
     
     # Authentication
-    path('register/', register_user, name='register'),
-    path('login/', user_login, name='login'),
-    path('logout/', user_logout, name='logout'),
+    path('user/register/', register_user, name='register'),
+    path('user/login/', user_login, name='login'),
+    path('user/logout/', user_logout, name='logout'),
     path('user/', user_info, name='user_info'),
     path('user/update/', user_update, name='user_update'),
+    path('user/forgot_password/', forgot_password, name='forgot_password'),
+    path('user/reset_password/', reset_password, name='reset_password'),
+    path('user/delete_account/', delete_account, name='delete_account'),
     
     # Machines
     path('machine/<int:id>/', machine, name='machine'),
