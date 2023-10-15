@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Machine, Blog
+from .models import User, Machine, Blog, UserMachine
 import hashlib
 
 class UserSerializer(serializers.ModelSerializer):
@@ -27,12 +27,11 @@ class UserSerializer(serializers.ModelSerializer):
 class MachineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Machine
-        fields = ['id', 'ami_id', 'blog', 'title', 'description', 'flag', 'image', 'difficulty', 'date_created']
+        fields = ['id', 'ami_id', 'title', 'description', 'flag', 'image', 'difficulty', 'date_created']
         
     def create(self, validated_data):
         machine = Machine(
             ami_id=validated_data['ami_id'],
-            blog=validated_data['blog'],
             title=validated_data['title'],
             description=validated_data['description'],
             flag=validated_data['flag'],
@@ -41,6 +40,11 @@ class MachineSerializer(serializers.ModelSerializer):
         )
         machine.save()
         return machine
+    
+class UserMachineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserMachine
+        fields = ['id', 'user', 'machine', 'machine_status', 'is_cracked', 'cracket_at']
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:

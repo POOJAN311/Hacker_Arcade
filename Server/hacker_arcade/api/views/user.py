@@ -1,15 +1,16 @@
+import hashlib
+import random
+from django.core.mail import send_mail
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
-from .serializers import UserSerializer, MachineSerializer, BlogSerializer
+from ..models import User
+from ..serializers import UserSerializer
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
-from rest_framework.permissions import IsAuthenticated
-from .models import User, Machine, Blog
-import random
-import hashlib
-from django.core.mail import send_mail
+
 
 @api_view(['POST'])
 def register_user(request):
@@ -133,50 +134,3 @@ def delete_account(request):
             return Response({'message': 'Successfully deleted account.'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def blogs(request):
-    if request.method == 'GET':
-        try:
-            serializer = BlogSerializer(Blog.objects.all(), many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def blog(request, id):
-    if request.method == 'GET':
-        try:
-            blog = Blog.objects.get(id=id)
-            serializer = BlogSerializer(blog)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except ObjectDoesNotExist:
-            return Response({'error': 'Blog not found'}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def machines(request):
-    if request.method == 'GET':
-        try:
-            serializer = MachineSerializer(Machine.objects.all(), many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def machine(request, id):
-    if request.method == 'GET':
-        try:
-            machine = Machine.objects.get(id=id)
-            serializer = MachineSerializer(machine)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except ObjectDoesNotExist:
-            return Response({'error': 'Machine not found'}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
