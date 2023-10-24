@@ -108,8 +108,6 @@ def reset_password(request):
         try:
             token = int(request.data.get('token'))
             password = request.data.get('password')
-            print(type(token))
-            print(type(request.session['token']))
             if token != request.session['token']:
                 return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
             user = User.objects.get(email=request.data.get('email'))

@@ -35,7 +35,7 @@ def machine(request, id):
 def start_machine(request):
     if request.method == 'POST':
         try:
-            machine = Machine.objects.get(id=request.data['id'])
+            machine = Machine.objects.get(id=request.data['machine_id'])
             
             # Check if the machine is already running for the user
             try:
@@ -96,7 +96,7 @@ def start_machine(request):
 def stop_machine(request):
     if request.method == 'POST':
         try:
-            user_machine = UserMachine.objects.get(id=request.data['id'])
+            user_machine = UserMachine.objects.get(id=request.data['user_machine_id'])
             
             try:
                 machine = Machine.objects.get(id=user_machine.machine.id)
@@ -147,7 +147,7 @@ def user_machine(request, id):
 def crack_machine(request):
     if request.method == 'POST':
         try:
-            user_machine = UserMachine.objects.get(id=request.data['id'])
+            user_machine = UserMachine.objects.get(id=request.data['user_machine_id'])
             
             # Check if the machine is already cracked
             if user_machine.is_cracked:

@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated
 from django.core.exceptions import ObjectDoesNotExist
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def blogs(request):
     if request.method == 'GET':
         try:
@@ -17,7 +16,6 @@ def blogs(request):
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def blog(request, id):
     if request.method == 'GET':
         try:
