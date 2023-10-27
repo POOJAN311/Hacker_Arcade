@@ -21,3 +21,13 @@ class UserMachineAdmin(admin.ModelAdmin):
     list_display = ('user', 'machine', 'machine_status', 'is_cracked')
     
 admin.site.register(UserMachine, UserMachineAdmin)
+
+class MachineBlogAdmin(admin.ModelAdmin):
+    list_display = ('machine', 'blog')
+    
+admin.site.register(MachineBlog, MachineBlogAdmin)
+
+class SecurityGroupAdmin(admin.ModelAdmin):
+    list_display = ('name', 'sg_id')
+    
+admin.site.register(SecurityGroup, SecurityGroupAdmin)

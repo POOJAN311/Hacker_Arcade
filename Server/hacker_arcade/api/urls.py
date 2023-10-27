@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import *
+from .views.blog import *
+from .views.machine import *
+from .views.user import *
 
 urlpatterns = [
     
@@ -16,8 +18,18 @@ urlpatterns = [
     # Machines
     path('machine/<int:id>/', machine, name='machine'),
     path('machines/', machines, name='machines'),
+    path('machine/start/', start_machine, name='start_machine'),
+    path('machine/stop/', stop_machine, name='stop_machine'),
+    
+    # User Machines
+    path('user_machines/', user_machines, name='user_machines'),
+    path('user_machine/<int:id>/', user_machine, name='user_machine'),
+    path('user_machine/crack/', crack_machine, name='crack_machine'),
     
     # Blogs
     path('blog/<int:id>/', blog, name='blog'),
     path('blogs/', blogs, name='blogs'),
+    
+    # Machine Blogs
+    path('machine_blogs/', machine_blogs, name='machine_blogs'),
 ]

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
 class User(AbstractUser):
     email = models.EmailField(max_length=254)
     bio = models.TextField(blank=True, null=True)
@@ -26,16 +25,34 @@ class Blog(models.Model):
     
 class Machine(models.Model):
     ami_id = models.CharField(max_length=200, null=True)
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
+    key_pair_name = models.CharField(max_length=200, null=True)
+    instance_type = models.CharField(max_length=200, null=True)
+    security_group = models.ForeignKey('SecurityGroup', on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200, null=True)
     description = models.TextField(blank=True, null=True)
     flag = models.CharField(max_length=200, null=True)
+    key_pair_name = models.CharField(max_length=200, null=True)
     image = models.ImageField(upload_to='machine_images/', null=True, blank=True)
     difficulty = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     
     def __str__(self):
         return self.title
+
+class SecurityGroup(models.Model):
+    name = models.CharField(max_length=200, null=True)
+    sg_id = models.CharField(max_length=200, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    
+    def __str__(self):
+        return self.name
+    
+class MachineBlog(models.Model):
+    machine = models.ForeignKey(Machine, on_delete=models.CASCADE, null=True)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
+    
+    def __str__(self):
+        return self.machine.title + " - " + self.blog.title
     
 class UserMachine(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
