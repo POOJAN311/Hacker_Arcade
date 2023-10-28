@@ -49,7 +49,7 @@ class UserMachineSerializer(serializers.ModelSerializer):
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ['title', 'html_body', 'date_created', 'thumbnail']
+        fields = ['id', 'title', 'html_body', 'date_created', 'thumbnail']
         
     def create(self, validated_data):
         blog = Blog(
