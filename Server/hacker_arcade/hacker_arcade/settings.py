@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-#v)h3q$el$v4+1u53%eqlxk(*!@krr0+$xn1=2j$p2pn6qy@as
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,11 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     # Third party Apps
     'rest_framework',
     'rest_framework.authtoken',
     'boto3',
+    'corsheaders',
     
     # Local Apps
     'api'
@@ -69,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'hacker_arcade.urls'
@@ -121,6 +122,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:5173',
+    'http://localhost:3000',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
