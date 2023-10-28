@@ -1,4 +1,13 @@
-import { people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star, card1, card2, card3 } from "../assets";
+import { people01, people02, people03, facebook, instagram, linkedin, twitter, coinbase, dropbox, send, shield, star, card1, card2, card3, blog1, blog2, blog3 } from "../assets";
+
+import {
+    RxCrop,
+    RxDesktop,
+    RxPencil2,
+    RxReader,
+    RxRocket,
+    RxAccessibility,
+} from "react-icons/rx";
 
 export const navLinks = [
     {
@@ -41,106 +50,71 @@ export const services = [
     }
 ];
 
-export const posts = [
+export const dataDigitalBestSeller = [
     {
         id: 1,
-        title: 'Boost your conversion rate',
-        href: '#',
-        description:
-            'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-        date: 'Mar 16, 2020',
-        datetime: '2020-03-16',
-        img: card1,
-        category: { title: 'Marketing', href: '#' },
-        author: {
-            name: 'Michael Foster',
-            role: 'Co-Founder / CTO',
-            href: '#',
-            imageUrl:
-                'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        }
+        title: 'Mario Kart™ 8 Deluxe',
+        price: '$59.99',
+        category: 'Nintendo Switch',
+        linkImg:
+            'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/m/mario-kart-8-deluxe-switch/hero?_a=AJADJWI0',
     },
     {
         id: 2,
-        title: 'Boost your conversion rate',
-        href: '#',
-        description:
-            'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-        date: 'Mar 16, 2020',
-        img: card1,
-        datetime: '2020-03-16',
-        category: { title: 'Marketing', href: '#' },
-        author: {
-            name: 'Michael Foster',
-            role: 'Co-Founder / CTO',
-            href: '#',
-            imageUrl:
-                'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        }
+        title: 'TRIANGLE STRATEGY™',
+        price: '$59.99',
+        category: 'Nintendo Switch',
+        linkImg:
+            'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/t/triangle-strategy-switch/hero?_a=AJADJWI0',
     },
     {
         id: 3,
-        title: 'Boost your conversion rate',
-        href: '#',
-        description:
-            'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-        date: 'Mar 16, 2020',
-        img: card1,
-        datetime: '2020-03-16',
-        category: { title: 'Marketing', href: '#' },
-        author: {
-            name: 'Michael Foster',
-            role: 'Co-Founder / CTO',
-            href: '#',
-            imageUrl:
-                'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        }
-    },
-
-];
-
-export const feedback = [
-    {
-        id: "feedback-1",
-        content:
-            "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver.",
-        name: "Herman Jensen",
-        title: "Founder & Leader",
-        img: people01,
+        title: 'Pokémon™ Legends: Arceus',
+        price: '$59.99',
+        category: 'Nintendo Switch',
+        linkImg:
+            'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/p/pokemon-legends-arceus-switch/hero?_a=AJADJWI0',
     },
     {
-        id: "feedback-2",
-        content:
-            "Money makes your life easier. If you're lucky to have it, you're lucky.",
-        name: "Steve Mark",
-        title: "Founder & Leader",
-        img: people02,
+        id: 4,
+        title: 'Super Mario™ 3D World + Bowser’s Fury',
+        price: '$59.99',
+        category: 'Nintendo Switch',
+        linkImg:
+            'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/s/super-mario-3d-world-plus-bowsers-fury-switch/hero?_a=AJADJWI0',
     },
     {
-        id: "feedback-3",
-        content:
-            "It is usually people in the money business, finance, and international trade that are really rich.",
-        name: "Kenn Gallagher",
-        title: "Founder & Leader",
-        img: people03,
-    },
-];
-
-export const stats = [
-    {
-        id: "stats-1",
-        title: "User Active",
-        value: "3800+",
+        id: 5,
+        title: 'Cuphead',
+        price: '$19.99',
+        category: 'Nintendo Switch',
+        linkImg:
+            'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/c/cuphead-switch/hero?_a=AJADJWI0',
     },
     {
-        id: "stats-2",
-        title: "Trusted by Company",
-        value: "230+",
+        id: 6,
+        title: 'Minecraft',
+        price: '$29.99',
+        category: 'Nintendo Switch',
+        linkImg:
+            'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/m/minecraft-switch/hero?_a=AJADJWI0',
     },
     {
-        id: "stats-3",
-        title: "Transaction",
-        value: "$230M+",
+        id: 7,
+        title: 'Mario + Rabbids® Kingdom Battle',
+        price: '$59.99',
+        category: 'Nintendo Switch',
+        linkImg:
+            'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/m/mario-plus-rabbids-kingdom-battle-switch/hero?_a=AJADJWI0',
+    },
+    {
+        id: 8,
+        title: 'Unravel Two',
+        price: '$59.99',
+        category: 'Nintendo Switch',
+        sale: 63, //percent
+        linkImg:
+            'https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_300/v1/ncom/en_US/games/switch/u/unravel-two-switch/hero?_a=AJADJWI0',
     },
 ];
 
@@ -207,47 +181,5 @@ export const footerLinks = [
                 link: "https://www.hoobank.com/become-a-partner/",
             },
         ],
-    },
-];
-
-export const socialMedia = [
-    {
-        id: "social-media-1",
-        icon: instagram,
-        link: "https://www.instagram.com/",
-    },
-    {
-        id: "social-media-2",
-        icon: facebook,
-        link: "https://www.facebook.com/",
-    },
-    {
-        id: "social-media-3",
-        icon: twitter,
-        link: "https://www.twitter.com/",
-    },
-    {
-        id: "social-media-4",
-        icon: linkedin,
-        link: "https://www.linkedin.com/",
-    },
-];
-
-export const clients = [
-    {
-        id: "client-1",
-        logo: airbnb,
-    },
-    {
-        id: "client-2",
-        logo: binance,
-    },
-    {
-        id: "client-3",
-        logo: coinbase,
-    },
-    {
-        id: "client-4",
-        logo: dropbox,
     },
 ];

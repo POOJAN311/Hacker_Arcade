@@ -1,6 +1,3 @@
-import airbnb from "./airbnb.png";
-import bill from "./bill.png";
-import binance from "./binance.png";
 import card from "./card.png";
 import coinbase from "./coinbase.png";
 import dropbox from "./dropbox.png";
@@ -13,7 +10,6 @@ import star from "./Star.svg";
 import menu from "./menu.svg";
 import close from "./close.svg";
 import google from "./google.svg";
-import apple from "./apple.svg";
 import arrowUp from "./arrow-up.svg";
 import discount from "./Discount.svg";
 import facebook from "./facebook.svg";
@@ -27,12 +23,12 @@ import card1 from "./card1.png";
 import card2 from "./card2.png";
 import card3 from "./card3.png";
 import hacker from "./hacker.jpg";
+import blog1 from "./blog1.jpg";
+import blog2 from "./blog2.jpg";
+import blog3 from "./blog3.jpg";
 
 
 export {
-  airbnb,
-  bill,
-  binance,
   card,
   coinbase,
   dropbox,
@@ -45,7 +41,6 @@ export {
   menu,
   close,
   google,
-  apple,
   arrowUp,
   discount,
   facebook,
@@ -58,5 +53,8 @@ export {
   card1,
   card2,
   card3,
-  hacker
+  hacker,
+  blog1,
+  blog2,
+  blog3,
 };

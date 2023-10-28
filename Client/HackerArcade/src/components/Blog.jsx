@@ -1,20 +1,139 @@
-import React from 'react'
-import { posts } from '../constants'
-const Blog = () => {
-    return (
-        <div className="mt-10 mx-auto lg:text-center">
-            {/* <h2 className="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2> */}
-            <h1 className="flex-1 font-poppins font-semibold ss:text-[52px] text-[46px] text-white ss:leading-[100.8px] leading-[75px]">
-                Latest from our blog
-            </h1>
-            <p className="mt-2 font-poppins font-semibold text-lg leading-8 text-gray-600">
-                Be aware with the latest Trends & News in cybersecuirty world.
-            </p>
-            <div className="mt-10 flex justify-center flex-wrap gap-10">
+import React, { useState } from 'react'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { dataDigitalBestSeller } from '../constants/index';
+import blog1 from '../assets/blog1.jpg';
 
+import "../App.css"
+import { RxArrowTopRight } from "react-icons/rx";
+const Blog = () => {
+
+    const [defaultImage, setDefaultImage] = useState({});
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 2000,
+        cssEase: "linear",
+        initialSlide: 0,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    };
+
+    const handleErrorImage = (data) => {
+        setDefaultImage((prev) => ({
+            ...prev,
+            [data.target.alt]: data.target.alt,
+            linkDefault: blog1,
+        }));
+    };
+
+    return (
+        <>
+            <div className="mt-10 mx-auto lg:text-center">
+                {/* <h2 className="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2> */}
+                <h1 className="flex-1 font-poppins font-semibold ss:text-[52px] text-[46px] text-white ss:leading-[100.8px] leading-[75px]">
+                    Latest from our blog
+                </h1>
+                <p className="mt-2 font-poppins font-semibold text-lg leading-8 text-gray-600">
+                    Be aware with the latest Trends & News in cybersecuirty world.
+                </p>
             </div>
-        </div>
+            <div className="mt-10 mx-auto">
+                <Slider {...settings}>
+                    {dataDigitalBestSeller.map((item) => (
+                        <div className="card">
+                            <div className="card-top">
+                                <img
+                                    src={
+                                        defaultImage[item.title] === item.title
+                                            ? defaultImage.linkDefault
+                                            : item.linkImg
+                                    }
+                                    alt={item.title}
+                                    onError={handleErrorImage}
+                                />
+                                <h1>{item.title}</h1>
+                            </div>
+                            <div className="card-bottom">
+                                <h3>{item.price}</h3>
+                                <span className="category">{item.category}</span>
+                            </div>
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+        </>
+
     )
 }
 
 export default Blog
+
+// <div className="flex items-center justify-center gap-10 flex-col h-[900px]">
+//                 <Swiper
+//                     breakpoints={{
+//                         340: {
+//                             slidesPerView: 2,
+//                             spaceBetween: 15,
+//                         },
+//                         700: {
+//                             slidesPerView: 3,
+//                             spaceBetween: 15,
+//                         },
+//                     }}
+//                     freeMode={true}
+//                     pagination={{
+//                         clickable: true,
+//                     }}
+//                     modules={[FreeMode, Pagination]}
+//                     className="max-w-[90%] lg:max-w-[80%]"
+//                 >
+//                     {ServiceData.map((item) => (
+//                         <SwiperSlide key={item.title}>
+//                             <div className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[250px] w-[215px] lg:h-[400px] lg:w-[350px] overflow-hidden cursor-pointer">
+//                                 <div
+//                                     className="absolute inset-0 bg-cover bg-center"
+//                                     style={{ backgroundImage: `url(${item.backgroundImage})` }}
+//                                 />
+//                                 <div className="absolute inset-0 bg-black opacity-10 group-hover:opacity-50" />
+//                                 <div className="relative flex flex-col gap-10">
+//                                     <item.icon className="text-blue-600 group-hover:text-blue-400 w-[32px] h-[32px]" />
+//                                     <h1 className="text-xl lg:text-2xl">{item.title} </h1>
+//                                     <p className="lg:text-[18px]">{item.content} </p>
+//                                 </div>
+//                                 <RxArrowTopRight className="absolute bottom-5 left-5 w-[35px] h-[35px] text-white group-hover:text-blue-500 group-hover:rotate-45 duration-100" />
+//                             </div>
+//                         </SwiperSlide>
+//                     ))}
+//                 </Swiper>
+//             </div>
