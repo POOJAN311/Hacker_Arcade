@@ -47,16 +47,17 @@ const Contact = () => {
   }
   return (
     <div className={`flex md:flex-row mt-16 flex-col overflow-hidden`}>
-      <motion.div className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]">
+      <motion.div className="xl:flex-1 w-[50%] xl:h-auto md:h-[550px] h-[350px]">
         <EarthCanvas />
       </motion.div>
+      <br />
       <motion.div className="flex-1 rounded-2xl">
         <p className="text-white font-poppins font-semibold md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Get in Touch</p>
         <h3 className="text-white font-poppins font-semibold md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]"><span className='text-lime-300'>Contact </span> Us</h3>
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
+          className='mt-3 flex flex-col gap-8'
         >
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Name</span>

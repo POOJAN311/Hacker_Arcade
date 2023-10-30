@@ -1,8 +1,11 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Footer, Login, Navbar } from "./components";
+import { About, Contact, Footer, Login, Navbar, Workspace } from "./components";
 import styles from './style';
 import Home from './Home';
+import Signup from './components/Signup';
+import Terms from './components/TermsCond';
+import Blog from './components/Blogs';
 
 function App() {
   return (
@@ -15,9 +18,11 @@ function App() {
         </div>
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/Login" element={<Login />} />
+          <Route exact path="/Signup" element={<Signup />} />
+          <Route exact path="/Terms" element={<Terms />} />
         </Routes>
         <Footer />
-        <Login />
       </div>
     </BrowserRouter>
   )

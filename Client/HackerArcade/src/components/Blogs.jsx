@@ -10,9 +10,9 @@ const { VITE_API_URL } = import.meta.env
 import "../App.css"
 import { RxArrowTopRight } from "react-icons/rx";
 const Blog = () => {
-    
+
     const [blogs, setBlogs] = useState([])
-    
+
     useEffect(() => {
         fetch(`${VITE_API_URL}/api/v1/blogs/`)
             .then(res => res.json())
@@ -88,6 +88,7 @@ const Blog = () => {
                                     alt={blog.title}
                                     onError={handleErrorImage}
                                 />
+                                <h1>{blog.date_created}</h1>
                                 <h1>{blog.title}</h1>
                             </div>
                         </div>
