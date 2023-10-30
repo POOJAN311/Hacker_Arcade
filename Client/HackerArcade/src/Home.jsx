@@ -1,4 +1,4 @@
-import Blog from './components/Blog';
+import Blogs from './components/Blogs';
 import { About, Contact, Hero, Workspace } from "./components";
 import Cards from './components/Cards';
 import styles from './style';
@@ -16,7 +16,7 @@ const Home = () => {
                 <div className={`${styles.boxWidth}`}>
                     <Cards />
                     <About />
-                    <Blog />
+                    <Blogs />
                     <Workspace />
                     <Contact />
                 </div>
