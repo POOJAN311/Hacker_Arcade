@@ -26,7 +26,7 @@ const About = () => {
       <h1 className="flex-1 font-poppins font-semibold ss:text-[52px] text-[46px] text-white ss:leading-[100.8px] leading-[75px]">
         Why Hacker Arcade?
       </h1>
-      <p className="mt-2 font-poppins font-semibold text-lg leading-8 text-gray-600">
+      <p className="mt-2 font-poppins font-semibold text-lg leading-8 text-dimWhite">
         Upskilling cyber superhumans since 2017.
       </p>
       <div className="mt-10 flex justify-center flex-wrap gap-10">
@@ -34,7 +34,7 @@ const About = () => {
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
       </div>
-      <div className="border-1 mt-20 font-poppins font-semibold text-lg leading-8 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit sapiente dolorem esse atque sed eius dolorum sequi recusandae repellendus modi praesentium, obcaecati perferendis asperiores doloribus deserunt, voluptas quod, tempora deleniti!</div>
+      <div className="border-1 mt-20 font-poppins font-semibold text-lg leading-8 text-dimWhite">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit sapiente dolorem esse atque sed eius dolorum sequi recusandae repellendus modi praesentium, obcaecati perferendis asperiores doloribus deserunt, voluptas quod, tempora deleniti!</div>
     </div>
   )
 }

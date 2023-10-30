@@ -1,9 +1,9 @@
 import './App.css'
-import { BrowserRouter } from "react-router-dom";
-import { About, Contact, Hero, Navbar, StarsCanvas } from "./components";
-import Blog from './components/Blog';
-import Cards from './components/Cards';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Footer, Login, Navbar } from "./components";
 import styles from './style';
+import Home from './Home';
+
 function App() {
   return (
     <BrowserRouter>
@@ -13,21 +13,11 @@ function App() {
             <Navbar />
           </div>
         </div>
-
-        <div className={`bg-primary ${styles.flexStart}`}>
-          <div className={`${styles.boxWidth}`}>
-            <Hero />
-          </div>
-        </div>
-
-        <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
-          <div className={`${styles.boxWidth}`}>
-            <Cards />
-            <About />
-            <Blog />
-            <Contact />
-          </div>
-        </div>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+        </Routes>
+        <Footer />
+        <Login />
       </div>
     </BrowserRouter>
   )

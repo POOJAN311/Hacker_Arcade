@@ -17,8 +17,8 @@ const Blog = () => {
         slidesToShow: 3,
         slidesToScroll: 3,
         autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 2000,
+        speed: 3000,
+        autoplaySpeed: 4000,
         cssEase: "linear",
         initialSlide: 0,
         responsive: [
@@ -64,7 +64,7 @@ const Blog = () => {
                 <h1 className="flex-1 font-poppins font-semibold ss:text-[52px] text-[46px] text-white ss:leading-[100.8px] leading-[75px]">
                     Latest from our blog
                 </h1>
-                <p className="mt-2 font-poppins font-semibold text-lg leading-8 text-gray-600">
+                <p className="mt-2 font-poppins font-semibold text-lg leading-8 text-dimWhite">
                     Be aware with the latest Trends & News in cybersecuirty world.
                 </p>
             </div>
@@ -98,42 +98,3 @@ const Blog = () => {
 }
 
 export default Blog
-
-// <div className="flex items-center justify-center gap-10 flex-col h-[900px]">
-//                 <Swiper
-//                     breakpoints={{
-//                         340: {
-//                             slidesPerView: 2,
-//                             spaceBetween: 15,
-//                         },
-//                         700: {
-//                             slidesPerView: 3,
-//                             spaceBetween: 15,
-//                         },
-//                     }}
-//                     freeMode={true}
-//                     pagination={{
-//                         clickable: true,
-//                     }}
-//                     modules={[FreeMode, Pagination]}
-//                     className="max-w-[90%] lg:max-w-[80%]"
-//                 >
-//                     {ServiceData.map((item) => (
-//                         <SwiperSlide key={item.title}>
-//                             <div className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[250px] w-[215px] lg:h-[400px] lg:w-[350px] overflow-hidden cursor-pointer">
-//                                 <div
-//                                     className="absolute inset-0 bg-cover bg-center"
-//                                     style={{ backgroundImage: `url(${item.backgroundImage})` }}
-//                                 />
-//                                 <div className="absolute inset-0 bg-black opacity-10 group-hover:opacity-50" />
-//                                 <div className="relative flex flex-col gap-10">
-//                                     <item.icon className="text-blue-600 group-hover:text-blue-400 w-[32px] h-[32px]" />
-//                                     <h1 className="text-xl lg:text-2xl">{item.title} </h1>
-//                                     <p className="lg:text-[18px]">{item.content} </p>
-//                                 </div>
-//                                 <RxArrowTopRight className="absolute bottom-5 left-5 w-[35px] h-[35px] text-white group-hover:text-blue-500 group-hover:rotate-45 duration-100" />
-//                             </div>
-//                         </SwiperSlide>
-//                     ))}
-//                 </Swiper>
-//             </div>
