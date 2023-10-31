@@ -13,11 +13,15 @@ const Blog = () => {
 
     const [blogs, setBlogs] = useState([])
 
-    useEffect(async () => {
-        await fetch(`${VITE_API_URL}/api/v1/blogs/`)
-            .then(res => res.json())
-            .then(data => setBlogs(data))
-            .then(console.log(blogs))
+    const fetchData = async () => {
+        fetch(`${VITE_API_URL}/api/v1/blogs/`)
+        .then(res => res.json())
+        .then(data => setBlogs(data))
+        .then(console.log(blogs))
+    }
+    
+    useEffect(() => {
+        fetchData()
     }, [])
     const [defaultImage, setDefaultImage] = useState({});
     const settings = {
