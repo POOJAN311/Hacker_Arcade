@@ -13,8 +13,8 @@ const Blog = () => {
 
     const [blogs, setBlogs] = useState([])
 
-    useEffect(() => {
-        fetch(`${VITE_API_URL}/api/v1/blogs/`)
+    useEffect(async () => {
+        await fetch(`${VITE_API_URL}/api/v1/blogs/`)
             .then(res => res.json())
             .then(data => setBlogs(data))
             .then(console.log(blogs))

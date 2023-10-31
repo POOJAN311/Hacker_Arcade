@@ -8,7 +8,6 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, null=True)
     profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
-    policy_agreement = models.BooleanField(default=False)
     terms_conditions_agreement = models.BooleanField(default=False)
     
     def __str__(self):
