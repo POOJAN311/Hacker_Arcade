@@ -8,8 +8,6 @@ const Navbar = () => {
 	const [active, setActive] = useState("Home");
 	const [toggle, setToggle] = useState(false);
 
-<<<<<<< Updated upstream
-=======
 	const [token, setToken] = useState(localStorage.getItem('token'))
 
 	const handleLogout = async () => {
@@ -32,7 +30,6 @@ const Navbar = () => {
         }
 	}
 
->>>>>>> Stashed changes
 	return (
 		<nav className="w-full flex py-6 justify-between items-center navbar">
 			<img src={logo} alt="HackerArcade" className="w-[124px] h-[32px]" />
@@ -50,14 +47,6 @@ const Navbar = () => {
 				))}
 			</ul>
 			<ul className="list-none sm:flex hidden justify-end items-center flex">
-<<<<<<< Updated upstream
-				<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
-					<Link to="/Login">Login</Link >
-				</li>
-				<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
-					<Link to="/Signup">Signup</Link >
-				</li>
-=======
 				{token ? <li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
 					<a onClick={handleLogout}>Logout</a >
 				</li> :
@@ -70,7 +59,6 @@ const Navbar = () => {
 						</li>
 					</>
 				}
->>>>>>> Stashed changes
 			</ul>
 
 			<div className="sm:hidden flex flex-1 justify-end items-center">
