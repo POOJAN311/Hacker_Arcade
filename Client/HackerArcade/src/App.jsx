@@ -6,7 +6,6 @@ import Home from './Home';
 import Signup from './components/Signup';
 import Terms from './components/TermsCond';
 import Blog from './components/Blogs';
-import Labs from './components/Labs';
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
           <Route exact path="/Login" element={<Login />} />
           <Route exact path="/Signup" element={<Signup />} />
           <Route exact path="/Terms" element={<Terms />} />
-          <Route exact path="/Labs" element={<Labs />} />
         </Routes>
         <Footer />
       </div>

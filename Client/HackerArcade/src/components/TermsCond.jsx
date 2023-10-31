@@ -98,7 +98,7 @@ const Terms = () => {
                         11. Contact Information
                     </h1>
                     <div className="border-1 mt-2 font-poppins font-semibold text-lg leading-8 text-dimWhite">
-                        If you have any questions or concerns regarding these T&C, please contact us at 97276 03266.
+                        If you have any questions or concerns regarding these T&C, please contact us at [Contact Information].
                     </div>
                 </div>
             </div>
