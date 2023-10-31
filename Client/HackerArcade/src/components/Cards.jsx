@@ -24,10 +24,11 @@ const Cards = () => {
 
                 <h1 className="font-poppins font-semibold ss:text-[68px] text-[52px] text-white ss:leading-[100.8px] leading-[75px] w-full">
                     Hackers At Heart                </h1>
+                <p className={`${styles.paragraph} max-w-[500px] mt-5`}>
+                    Welcome to Hacker Arcade, where cybersecurity expertise meets practical learning. At Hacker Arcade, our mission is clear: to bridge the gap between theoretical knowledge and practical application in web application security and ethical hacking.
+                </p>
                 <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto possimus doloribus labore autem facilis, deserunt dolor quos molestias id, officiis sit eius tenetur soluta numquam dolorum nostrum voluptatum quasi iste?
-                </p><p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto possimus doloribus labore autem facilis, deserunt dolor quos molestias id, officiis sit eius tenetur soluta numquam dolorum nostrum voluptatum quasi iste?
+                    We believe that cybersecurity is not just about understanding the concepts; it's about hands-on experience in real-world scenarios. Our goal is to empower individuals with the expertise required to excel in the field of cybersecurity, ultimately contributing to a more secure digital landscape
                 </p>
             </div>
         </section>

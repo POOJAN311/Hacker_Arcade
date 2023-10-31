@@ -2,11 +2,32 @@ import { useState } from "react";
 import { close, logo, menu } from "../assets";
 import { navLinks } from "../constants";
 import { Link } from "react-router-dom";
-import Login from "./Login";
+const { VITE_API_URL } = import.meta.env
 
 const Navbar = () => {
 	const [active, setActive] = useState("Home");
 	const [toggle, setToggle] = useState(false);
+
+	const [token, setToken] = useState(localStorage.getItem('token'))
+
+	const handleLogout = async () => {
+		const response = await fetch(`${VITE_API_URL}/api/v1/user/logout/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+				'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+        })
+        if (response.status !== 200) {
+            const data = await response.json()
+            alert("Error: " + data.error)
+        } else {
+            const data = await response.json()
+			console.log(data.message)
+			localStorage.removeItem('token')
+            console.log("Logged Out Successfully")
+        }
+	}
 
 	return (
 		<nav className="w-full flex py-6 justify-between items-center navbar">
@@ -25,12 +46,18 @@ const Navbar = () => {
 				))}
 			</ul>
 			<ul className="list-none sm:flex hidden justify-end items-center flex">
-				<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
-					<Link to="/Login">Login</Link >
-				</li>
-				<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
-					<Link to="/Signup">Signup</Link >
-				</li>
+				{localStorage.getItem('token') ? <li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
+					<a onClick={handleLogout}>Logout</a >
+				</li> :
+					<>
+						<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
+							<Link to="/Login">Login</Link >
+						</li>
+						<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
+							<Link to="/Signup">Signup</Link >
+						</li>
+					</>
+				}
 			</ul>
 
 			<div className="sm:hidden flex flex-1 justify-end items-center">
@@ -57,7 +84,7 @@ const Navbar = () => {
 							</li>
 						))}
 						<li className="font-poppins font-normal cursor-pointer mt-4 mb-4 text-[16px] text-white">
-							<Link to={Login}>Login</Link >
+							<Link to="/Login">Login</Link >
 						</li>
 						<li className="font-poppins font-normal cursor-pointer mb-4 text-[16px] text-white">
 							<Link to="/Signup">Signup</Link >

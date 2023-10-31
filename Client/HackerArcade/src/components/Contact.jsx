@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 import styles from "../style";
 import { EarthCanvas } from "./canvas";
 
@@ -22,13 +22,13 @@ const Contact = () => {
     setLoading(true);
 
     emailjs.send(
-      'service_zsaztrg',
-      'template_ynp45ei',
+      'service_pbjs5wa',
+      'template_g7j7z37',
       {
         from_name: form.name,
-        to_name: 'Poojan',
+        to_name: 'Mayan',
         from_email: form.email,
-        to_email: 'poojanpatel182@gmail.com',
+        to_email: 'mayanprajapati007@gmail.com',
         message: form.message,
       },
       '0382tm_VoQX9zhg7s').then(() => {
@@ -67,7 +67,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-black text-white rounded-lg outline-none border-none font-medium'
+              className='bg-tertiary py-4 px-6 placeholder:text-black text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -78,7 +78,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-black text-white rounded-lg outline-none border-none font-medium'
+              className='bg-tertiary py-4 px-6 placeholder:text-black text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -89,7 +89,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-black text-white rounded-lg outline-none border-none font-medium'
+              className='bg-tertiary py-4 px-6 placeholder:text-black text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
           <button type="submit" class="rounded-md bg-lime-500 px-3.5 py-2.5 text-md font-semibold text-black shadow-sm hover:bg-lime-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-24">
