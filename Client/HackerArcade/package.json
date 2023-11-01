@@ -24,6 +24,7 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.17.0",
     "react-slick": "^0.29.0",
+    "react-slider": "^2.0.6",
     "react-tilt": "^1.0.2",
     "react-typist": "^2.0.5",
     "react-typist-loop": "^1.0.0",

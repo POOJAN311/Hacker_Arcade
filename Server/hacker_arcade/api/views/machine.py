@@ -150,8 +150,6 @@ def crack_machine(request):
             user_machine = UserMachine.objects.get(id=request.data['user_machine_id'])
             
             # Check if the machine is already cracked
-            if user_machine.is_cracked:
-                return Response({'error': 'Machine already cracked'}, status=status.HTTP_400_BAD_REQUEST)
             
             # Check if the machine is running
             if user_machine.machine_status != 'running':

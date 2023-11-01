@@ -1,7 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "../style";
+import Sliders from './Sliders';
+import { useNavigate } from 'react-router-dom';
+const { VITE_API_URL } = import.meta.env
 
 const Labs = () => {
+
+    const router = useNavigate()
+
+    const [machines, setMachines] = useState([])
+
+    const getMachines = async () => {
+        const response = await fetch(`${VITE_API_URL}/api/v1/machines/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+        })
+        if (response.status !== 200) {
+            const data = await response.json()
+            alert("Error: " + data.detail)
+        } else {
+            const data = await response.json()
+            setMachines(data)
+            console.log(data)
+        }
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('token') === null) {
+            router('/login')
+        } else {
+            getMachines()
+        }
+    }, [])
+
     return (
         <>
 
@@ -97,6 +131,30 @@ const Labs = () => {
                         </p><p className={`${styles.paragraph} max-w-[470px] mt-5`}>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto possimus doloribus labore autem facilis, deserunt dolor quos molestias id, officiis sit eius tenetur soluta numquam dolorum nostrum voluptatum quasi iste?
                         </p>
+                    </div>
+                </div>
+                {/* break */}
+                <div className={`flex md:flex-row mt-16 flex-col ${styles.paddingY}`}>
+                    <div className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}>
+                        <div className="flex flex-row justify-between items-center w-full">
+                            <h1 className="flex-1 font-poppins font-semibold ss:text-[30px] text-[30px] text-white"><span className='text-lime-300'>Grow </span>with Labs
+                            </h1>
+                        </div>
+
+                        <h3 className="font-poppins font-semibold ss:text-[55px] text-[50px] text-white ss:leading-[70.8px] leading-[60px] w-1/2">
+                            An ever-expanding pool of hacking content </h3>
+                        <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
+                            With new content released every week, you'll never stop learning the latest techniques, skills, and tricks.
+                        </p>
+                        <div className="flex flex-row justify-between items-center text-center mx-auto w-full">
+                            <div className="container w-full my-12 mx-auto px-4 md:px-12">
+                                <div className="flex flex-wrap -mx-1 lg:-mx-4">
+                                    {machines.map((machine) => (
+                                        <Sliders machine={machine} />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

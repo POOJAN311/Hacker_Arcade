@@ -3,12 +3,43 @@ import { close, logo, menu } from "../assets";
 import { navLinks } from "../constants";
 import { Link } from "react-router-dom";
 import Login from "./Login";
+import { useEffect } from "react";
+const { VITE_API_URL } = import.meta.env
 
 const Navbar = () => {
 	const [active, setActive] = useState("Home");
 	const [toggle, setToggle] = useState(false);
 
-	const [token, setToken] = useState(localStorage.getItem('token'))
+	const [username, setUsername] = useState("")
+
+	const [token, setToken] = useState()
+
+	const getUser = async () => {
+		const response = await fetch(`${VITE_API_URL}/api/v1/user/`, {
+			method: 'GET',
+			headers: {
+                'Content-Type': 'application/json',
+				'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+		})
+		if (response.status !== 200) {
+			const data = await response.json()
+			alert("Error: " + data.detail)
+		} else {
+			const data = await response.json()
+			setUsername(data.username)
+			console.log(data)
+		}
+	}
+
+	useEffect(() => {
+		setToken(localStorage.getItem('token'))
+		if(localStorage.getItem('token')) {
+			getUser()
+		} else {
+			console.log("Not Logged In")
+		}
+	}, [])
 
 	const handleLogout = async () => {
 		const response = await fetch(`${VITE_API_URL}/api/v1/user/logout/`, {
@@ -20,7 +51,7 @@ const Navbar = () => {
         })
         if (response.status !== 200) {
             const data = await response.json()
-            alert("Error: " + data.error)
+            alert("Error: " + data.detail)
         } else {
             const data = await response.json()
 			console.log(data.message)
@@ -47,9 +78,16 @@ const Navbar = () => {
 				))}
 			</ul>
 			<ul className="list-none sm:flex hidden justify-end items-center flex">
-				{token ? <li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
-					<a onClick={handleLogout}>Logout</a >
-				</li> :
+				{token ? 
+					<>
+						<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
+							<a>{username}</a>
+						</li>
+						<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
+							<a onClick={handleLogout}>Logout</a >
+						</li>
+					</>
+						:
 					<>
 						<li className="font-poppins font-normal cursor-pointer text-[16px] p-3 text-white">
 							<Link to="/Login">Login</Link >
@@ -84,12 +122,25 @@ const Navbar = () => {
 								<a href={`#${nav.id}`}>{nav.title}</a>
 							</li>
 						))}
-						<li className="font-poppins font-normal cursor-pointer mt-4 mb-4 text-[16px] text-white">
-							<Link to={Login}>Login</Link >
-						</li>
-						<li className="font-poppins font-normal cursor-pointer mb-4 text-[16px] text-white">
-							<Link to="/Signup">Signup</Link >
-						</li>
+						{token ?
+						<>
+							<li className="font-poppins font-normal cursor-pointer mt-4 mb-4 text-[16px] text-white">
+								<a>{username}</a >
+							</li>
+							<li className="font-poppins font-normal cursor-pointer mt-4 mb-4 text-[16px] text-white">
+								<a onClick={handleLogout}>Logout</a >
+							</li>
+						</>
+						:
+						<>
+							<li className="font-poppins font-normal cursor-pointer mt-4 mb-4 text-[16px] text-white">
+								<Link to={Login}>Login</Link >
+							</li>
+							<li className="font-poppins font-normal cursor-pointer mb-4 text-[16px] text-white">
+								<Link to="/Signup">Signup</Link >
+							</li>
+						</>
+						}
 					</ul>
 					<ul className="list-none flex flex-col">
 

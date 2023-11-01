@@ -21,7 +21,7 @@ const ServiceCard = ({ index, title, sub, icon }) => {
 
 const About = () => {
   return (
-    <div className="mx-auto lg:text-center">
+    <div className="mx-auto lg:text-center" id="About">
       {/* <h2 className="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2> */}
       <h1 className="flex-1 font-poppins font-semibold ss:text-[52px] text-[46px] text-white ss:leading-[100.8px] leading-[75px]">
         Why Hacker Arcade?

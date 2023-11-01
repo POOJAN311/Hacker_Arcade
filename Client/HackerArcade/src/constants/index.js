@@ -23,7 +23,7 @@ export const navLinks = [
         title: "Blogs",
     },
     {
-        id: "WorkSpace",
+        id: "Labs",
         title: "WorkSpace",
     },
     {
